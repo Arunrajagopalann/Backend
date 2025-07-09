@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: .././practice
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .././practice/.env.local
+
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    env_file:
+      - /home/yogaraj/Documents/timesheet/nodejsproject/.env
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27018:27017"  # Expose MongoDB on port 27018 for external access
+    volumes:
+      - ./backend:/data/db 
