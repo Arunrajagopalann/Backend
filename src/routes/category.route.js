@@ -10,26 +10,27 @@ const { getAllCategory, createOrUpdateCategory,deleteCategory ,patchCategory,} =
 const {createOrUpdateBrand,getAllBrand,deletebrand} = require('../controllers/brand.controller');
 
 router.route('/category').get(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
     getAllCategory).post(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
     createOrUpdateCategory);
 router.route('/category/:id').get(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
     getAllCategory).put(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
     createOrUpdateCategory).delete(
-        // authentication,authorizeRole(admin_SuperAdmin),
+        authentication,authorizeRole(admin_SuperAdmin),
         deleteCategory).patch(authentication,authorizeRole(admin_SuperAdmin),patchCategory);
 
 router.route('/brand').post(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
 createOrUpdateBrand).get(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
     getAllBrand);
 router.route('/brand/:id').get(
-    // authentication,authorizeRole(allRoles),
-    getAllBrand).delete(deletebrand);
+    authentication,authorizeRole(allRoles),
+    getAllBrand).delete(deletebrand).put( authentication,authorizeRole(allRoles),
+createOrUpdateBrand);
 
 
 module.exports = router;

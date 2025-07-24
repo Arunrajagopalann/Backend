@@ -9,16 +9,16 @@ const { createOrUpdatewarehouse,getWarehouse,deleteWarehouse } = require('../con
 
 
 router.route('/warehouse').get(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
      getWarehouse).post(
-        // authentication,authorizeRole(allRoles),
+        authentication,authorizeRole(allRoles),
          createOrUpdatewarehouse);
 router.route('/warehouse/:id').get(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
      getWarehouse).put(
-        // authentication,authorizeRole(allRoles),
+       authentication,authorizeRole(allRoles),
          createOrUpdatewarehouse).delete(
-            // authentication,authorizeRole(allRoles),
+            authentication,authorizeRole(allRoles),
              deleteWarehouse);
 
 

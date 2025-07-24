@@ -10,17 +10,17 @@ const allRoles=['Admin','Super_Admin','User'];
 const { getProducts, getByIdProducts,createOrUpdateProduct ,deleteProduct,patchProduct,downloadProduct,downloadimage,bulkUploadProducts} = require('../controllers/product.controller');
 
 router.route('/products').get(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
 getProducts).post(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
  upload.array('images'), multerErrorMiddleware.multerErrorHandler, createOrUpdateProduct);
 
 router.route('/products/:id').get(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
 getByIdProducts).put(
-    // authentication,authorizeRole(allRoles),
+    authentication,authorizeRole(allRoles),
 createOrUpdateProduct).delete(
-    // authentication,authorizeRole(admin_SuperAdmin),
+    authentication,authorizeRole(admin_SuperAdmin),
     deleteProduct).patch(authentication,authorizeRole(admin_SuperAdmin),patchProduct);
 router.route('/productsDownload').get(downloadProduct)
 router.route('/imageDownload/:filename').get(downloadimage)

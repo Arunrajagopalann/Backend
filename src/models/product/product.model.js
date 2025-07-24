@@ -7,7 +7,7 @@ const productConst = require('../../utils/product/product.util')
 const productSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
     unique: true
   },
   brand: {
@@ -15,30 +15,30 @@ const productSchema = mongoose.Schema({
     default: null,
     trim: true,
     ref: 'Brand',
-    required: true
+    // required: true
   },
   price: {
     type: Number,
-    required: true
+    // required: true
   },
   description: {
     type: String,
-    required: true
+    // required: true
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
-    required: true
+    // required: true
   },
   warehouse: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Warehouse',
-    required: true
+    // required: true
   },
 
   seller: {
     type: String,
-    required: true
+    // required: true
   },
   images: [{
     type: String
