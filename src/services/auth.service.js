@@ -23,17 +23,17 @@ exports.createRegister = async (req, res) => {
         }
 
         registerData.role = role || 'User';
-
         const newRegister = new registerModel(registerData);
         await newRegister.save();
 
-        return res.status(200).json({ success: true, message: "User created successfully" });
+        return { success: true,statusCode: 200, message: "User created successfully" };
 
     } catch (err) {
         console.error('Error creating user:', err);
-        return res.status(500).json({ success: false, message: "User not created" });
+         return { success: false, statusCode: 500, message: "error occured" + err }
     }
 };
+
 
 exports.login = async (req, res) => {
     let data = req.body;
