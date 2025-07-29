@@ -14,12 +14,14 @@ exports.createRegister = async (req, res) => {
     try {
         
         if (password !== confirmPassword) {
-            return res.status(400).json({ success: false, message: "Password and confirm Password do not match" });
+            return { success: false, statusCode: 400, message: "Password and confirm Password do not match" };
+
         }
 
         const existingUser = await registerModel.findOne({ email: registerData.email });
         if (existingUser) {
-            return res.status(400).json({ success: false, message: "Email already exists" });
+            return { success: false, statusCode: 400, message: "Email already exists" };
+
         }
 
         registerData.role = role || 'User';
