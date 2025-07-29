@@ -7,7 +7,6 @@
         try{
             if(id){
                 const category= await categoryModel.findByIdAndUpdate(id,data)
-                console.log('category',category);
                 return { success: true, statusCode: 200, message: "category update successfully" };
             }else{
                 try{

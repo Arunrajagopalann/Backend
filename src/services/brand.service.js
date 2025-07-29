@@ -8,7 +8,6 @@ const productModel = require('../models/product/product.model')
         try{
             if(id){
                 const category= await brandModel.findByIdAndUpdate(id,data)
-                console.log('category',category);
                 return { success: true, statusCode: 200, message: "brand update successfully" };
             }else{
                 try{
@@ -39,7 +38,6 @@ const productModel = require('../models/product/product.model')
             
             let products = await productModel.find({ brand: brand._id });
 
-            console.log('found brand', brand);
             
             return {  data: { ...brand._doc,  products: products},success: true, statusCode: 200, message: "data fetched successfully" };
 
@@ -57,7 +55,6 @@ const productModel = require('../models/product/product.model')
             // ])
 
             const queryBrand = await brandModel.find({ status: { $ne: 'DELETED' }})
-            console.log('queryBrand', queryBrand);
             // queryBrand[0].sayHi()
             // const queryBrands = await brandModel.findByName("addidas")
         //  

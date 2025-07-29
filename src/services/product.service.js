@@ -8,14 +8,12 @@ const path = require('path');
 
 
 exports.downloadProduct = async (req, res) => {
-    console.log('downloadProduct');
     let page = 1;
     let limit = 10;
     const skip = (page - 1) * limit;
     let search = '';
     try {
         const products = await getProductAggregate(search, limit, skip)
-        console.log('products', products);
 
         const excelBuffer = generateExcelReport(products);
         res.setHeader('Content-Disposition', 'attachment; filename=products_report.xlsx');
@@ -199,7 +197,6 @@ exports.getByIdProducts = async (req, res) => {
         const products = await productModel.findById(id)
         const populate = await productModel.findById(id).populate('brand')
 
-        console.log('populate', populate);
         if (!products) {
             return { statusCode: 404, message: 'Product not found' };
         }
@@ -212,7 +209,6 @@ exports.getByIdProducts = async (req, res) => {
 
 exports.createOrUpdateProduct = async (req, res) => {
     let data = req.body;
-    console.log(data)
     const files = req.files;
     let id = req.params.id;
     let productData = {

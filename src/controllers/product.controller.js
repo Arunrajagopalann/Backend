@@ -2,7 +2,6 @@ const productService = require('../services/product.service')
 const logger = require('../utils/log/logger');
 
 exports.getProducts = async (req,res)=>{
-    console.log('getProducts');
     
     logger.info('get products started');
     let result = await productService.getProducts(req,res);

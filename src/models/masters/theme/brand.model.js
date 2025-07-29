@@ -27,7 +27,6 @@ const brandSchema = mongoose.Schema({
 },{versionKey:false,timestamps: true})
 
 brandSchema.methods.sayHi = function(){
-    console.log(` ${this.brandName} this is the brand`)
 
 }
 brandSchema.statics.findByName = function(name){

@@ -4,7 +4,6 @@ exports.createOrUpdateWarehouse = async (req, res) => {
     const id = req.params.id;
     const { warehouseName, warehouseType, address, poc,stock } = req.body
 
-    console.log("req+.body",req.body);
     
     try {
         const data = {
@@ -50,7 +49,6 @@ exports.getWarehouse = async (req, res) => {
             }
         } else {
             try {
-                console.log('warehouseModel',warehouseModel());
                 
                 const findWarehouse = await warehouseModel.find({ status: { $ne: 'DELETED' }})
                 if (findWarehouse) {
