@@ -11,6 +11,10 @@ const warehouseSchema = mongoose.Schema(
             type:String,
             default: null,
         },
+         email:{
+            type:String,
+            default: null,
+        },
         address:[
             {
                 addressType:{type:String,},
@@ -19,10 +23,14 @@ const warehouseSchema = mongoose.Schema(
                 country:{type:String,},
                 state:{type:String,},
                 city:{type:String,},
-                postalCode:{type:String,},
+                zipCode:{type:String,},
             }
         ],
         poc:{
+            type:String,
+            default: null,
+        },
+         phone:{
             type:String,
             default: null,
         },

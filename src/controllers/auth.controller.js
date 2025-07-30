@@ -16,3 +16,15 @@ exports.forgotPassword = async (req,res)=>{
     let result = await authService.forgotPassword(req);   
     res.status(result.statusCode).json(result)
 }
+exports.getUserDetails = async (req,res)=>{
+    let result = await authService.getUserDetails(req);   
+    res.status(result.statusCode).json(result)
+}
+exports.getByIdUserDetails = async (req,res)=>{
+    let result = await authService.getByIdUserDetails(req);   
+    res.status(result.statusCode).json(result)
+}
+exports.updateUserDetails = async (req,res)=>{
+    let result = await authService.updateUserDetails(req);   
+    res.status(result.statusCode).json(result)
+}

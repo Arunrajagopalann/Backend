@@ -42,14 +42,15 @@ exports.login = async (req, res) => {
     const { email, password } = data;
     try {
         if (!email || !password) {
-            return { success: false, statusCode: 400, message: 'emailId or Password is required' }
+            return { success: false, statusCode: 400, message: 'email or Password is required' }
         }
 
         const loginUser = await registerModel.find({ email: email })
         if (!loginUser || loginUser.length == 0 ) {
             return { success: false, statusCode: 400, message: "invalid details" }
         } else {
-            if (loginUser.password === password) {
+            console.log('loginUser.password',loginUser[0].password, password,loginUser[0].password === password,loginUser)
+            if (loginUser[0].password !== password) {
                 return { success: false, statusCode: 500, message: "password not matched" }
             } else {
                 const payload = {
@@ -144,3 +145,43 @@ exports.forgotPassword = async (req, res) => {
 }
 
 
+exports.getUserDetails = async (req) => {
+    const userId = req.user._id;
+    try {
+        const user = await registerModel.findById(userId);
+        if (!user) {
+            return { success: false, statusCode: 404, message: 'User not found' };
+        }
+        return { data: user, success: true, statusCode: 200, message: 'User details fetched successfully' };
+    } catch (error) {
+        return { success: false, statusCode: 500, message: 'Internal server error' + error };
+    }
+}   
+
+exports.getByIdUserDetails = async (req) => {
+    const userId = req.params.id;
+    try {
+        const user = await registerModel.findById(userId);
+        if (!user) {
+            return { success: false, statusCode: 404, message: 'User not found' };
+        }
+        return { data: user, success: true, statusCode: 200, message: 'User details fetched successfully' };
+    } catch (error) {
+        return { success: false, statusCode: 500, message: 'Internal server error' + error };
+    }
+}
+
+exports.updateUserDetails = async (req) => {
+    const userId = req.user._id;
+    const updateData = req.body;
+
+    try {
+        const updatedUser = await registerModel.findByIdAndUpdate(userId, updateData, { new: true });
+        if (!updatedUser) {
+            return { success: false, statusCode: 404, message: 'User not found' };
+        }
+        return { data: updatedUser, success: true, statusCode: 200, message: 'User details updated successfully' };
+    } catch (error) {
+        return { success: false, statusCode: 500, message: 'Internal server error' + error };
+    }
+}

@@ -7,6 +7,11 @@ const categorySchema = mongoose.Schema({
         required:true,
         unique: true 
     },
+     description:{
+        type:String,
+        default:null,
+        trim : true
+    },
     status:{
         type:String,
         value:categoryConst.categoryStatusList,

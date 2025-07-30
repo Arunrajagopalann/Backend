@@ -30,9 +30,12 @@ const loginValidator = Joi.object({
   
     email: Joi.string().email().required().messages({
         'any.required': ' email is required.',
-        'string.empty': 'email the  name',
+        'string.empty': 'email is required',
     }),
-    password: Joi.string().required(),
+    password: Joi.string().required().messages({
+        'any.required': ' password is required.',
+        'string.empty': 'password is required',
+    }),
  
 });
 

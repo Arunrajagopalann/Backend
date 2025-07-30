@@ -39,6 +39,7 @@
                     $project: {
                         categoryName: 1,
                         status: 1,
+                        description: 1,
                         createdBy: 1,
                         updatedBy: 1,
                         createdAt: 1,
